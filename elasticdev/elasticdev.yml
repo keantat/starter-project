@@ -30,7 +30,6 @@ build:
                  - dev1
        arguments:
           DOCKER_FILE_BUILD: configs/build/Dockerfile
-          DOCKER_FILE_BUILD: configs/build/Dockerfile
           DOCKER_PROVIDER: docker.io
           DOCKER_USERNAME: elasticdev
           DOCKER_REPO_TYPE: public
