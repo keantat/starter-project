@@ -1,12 +1,23 @@
 global_arguments:
-   region: us-east-1
+   region: us-west-2
    sg_db_label: database
    sg_web_label: web
 infrastructure:
    vpc:
        stack_name: aws_vpc_2tier
-   dockerhost:
-       stack_name: aws_ec2_dockerhost_dev
+   rds_mysql:
+       stack_name: aws_db_rds
        arguments:
-          size: t2.micro
-          disksize: 30
+          flavor: "db.t2.micro"
+          size: 5
+          engine: "MySQL"
+          az: False
+   ubuntu:
+       stack_name: ec2_server
+       arguments:
+           hostname: ed_server_name_change_here
+           size: t2.nano
+           os: ubuntu
+           disksize: 50
+           key: first_ssh_key
+           sg_label: web
