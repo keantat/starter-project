@@ -8,5 +8,19 @@ infrastructure:
    dockerhost:
        stack_name: aws_ec2_dockerhost_dev
        arguments:
-          size: t2.micro
-          disksize: 30
+          size: t2.nano
+          disksize: 50
+   kubernetes:
+       dependencies:
+           - infrastructure::dockerhost
+       stack_name: aws_kubernetes
+       arguments:
+          AddCreds: 
+              - name: aws
+                type: aws
+              - name: docker
+          domain: test787.elasticdeploy.com
+          parent_domain: elasticdeploy.com
+          kube_node_size: t2.micro
+          kube_node_count: 0
+          kube_master_size: t2.micro
